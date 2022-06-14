@@ -1,4 +1,5 @@
 ﻿using DesignPatterns._1_Singleton;
+using DesignPatterns._2_Prototype;
 
 class Program
 {
@@ -10,6 +11,8 @@ class Program
         switch (number)
         {
             case "1": RunSingleton();
+                break;
+            case "2": RunPrototype();
                 break;
             default: Console.WriteLine("Not found");
                 break;
@@ -25,5 +28,15 @@ class Program
 
         if (singleton1 == singleton2) Console.WriteLine("Singleton runs only one instance");
         else Console.WriteLine("Something gone wrong with singleton code");
+    }
+    private static void RunPrototype()
+    {
+        var concretePrototype1 = new ConcretePrototype{ field1 = "Test" };
+        var concretePrototype2 = concretePrototype1.Clone();
+        var concretePrototype3 = concretePrototype1;
+        Console.WriteLine(
+            "First one: "+concretePrototype1.GetHashCode()
+            + "\nCopy of first one:" + concretePrototype2.GetHashCode()
+            + "\nReference to first one: " + concretePrototype3.GetHashCode());
     }
 }
